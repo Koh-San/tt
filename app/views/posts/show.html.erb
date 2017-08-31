@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>제목:</strong>
+  <%= @post.title %>
+</p>
+<p>
+  <%= @post.written_by%>
+</p>
+<p>
+  <strong>내용:</strong>
+  <%= @post.content %>
+</p>
+
+<%= link_to 'Edit', edit_post_path(@post) %> |
+<%= link_to 'Back', posts_path %>
+
+<h4>댓 보는곳</h4>
+  <% @comments.each do |comment| %>
+    <p>원래 여기 작성자가 떠야하는데ㅠㅠ<%= comment.written_by %> : <%= comment.comment %></p>
+    <% if current_user == comment.written_by %>
+      <a href='/<%= @post.id %>/comments/destroy/<%= comment.id %>' data-method='post' data-confirm='댓글을 삭제할까요?'>[삭제]</a><hr>
+    <% end %>
+  <% end %>
+
+
+<h4>댓 쓰는곳</h4>
+<h5>삭제버튼 만들었는데 코드가 이상해서 삭제 안되니까 꼭 세번 생각해보고 쓰길</h5>
+  <form action='/<%= @post.id %>/comments/create'method="post">
+    <textarea rows="3" name='input_comment'></textarea>
+    <input type='hidden' name='written_by' value='<% current_user.email %>'>
+    <input type='submit' value='ㄱㄱ'>
+  
+</form>

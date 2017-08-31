@@ -1,0 +1,46 @@
+<p id="notice"><%= notice %></p>
+
+<div class="myfont"> <h2>하...최종과제 넘힘드네요 ㅠㅠ</h2></div>
+<img src="http://2016.daegu.go.kr/education/images/sub06_01img01.gif">
+<h4 class="myfont">이런 뭔가 대단한거 만들어보고 싶어서 부트스트랩 CDN도 넣고 했지만 현실은...</h4>
+<img src="https://cdn.clien.net/web/api/file/F01/4046487/20545a9e7cc846b3b78.PNG?w=900&h=30000&gif=true">
+<h4>이미지 첨부할라 캤드만 안되네 ㅠㅠ</h4>
+<img src="http://koreanpress.net/wys2/file_attach/2014/02/04/1391464474-34.jpg">
+<p class="myfont">2학기도 화이팅!!</p>
+<a href="https://koh-san.github.io/"><button type="button" class="btn btn-primary"><strong>자기소개 페이지</strong></button></a>
+<a href="https://godsan.herokuapp.com/"><button type="button" class="btn btn-primary"><strong>랜덤게임</strong></button></a><p>왜 부트스트랩 안먹지?</p>
+
+<table class="myfont">
+  <thead>
+    <tr>
+      <th>제목</th>
+      <th>내용</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @posts.each do |post| %>
+      <tr>
+        <td><%= post.title %></td>
+        <td><%= post.content %></td>
+        <td><%= link_to '보기', post %></td>
+        <td><%= link_to '고치기', edit_post_path(post) %></td>
+        <td><%= link_to '없애기', post, method: :delete, data: { confirm: '니가 쓴 글이 아니라도 지울수 있음(원래 만들려했는데 ㅠㅠ)' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to '심심하면 글 한번 써봐', new_post_path %>
+
+
+<%= current_user.email %>
+<% if user_signed_in? %>
+  <%= link_to '로그아웃', destroy_user_session_path, method: 'delete' %>
+<% else %>
+  <%= link_to '로그인', new_user_session_path %>
+  <%= link_to '회원가입', new_post_path %>
+<% end %>
